@@ -117,7 +117,7 @@ class Router
             if ($id !== '') {
                 $params['id'] = $id;
             }
-            
+
             return call_user_func_array([$controller, $action], [$params]);
 
         } elseif ($id !== '') {

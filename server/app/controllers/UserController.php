@@ -50,6 +50,7 @@ class UserController
     // POST -> Insert user data
     public function insertUser()
     {
+
         // get input data
         $data = (array) ApiFunctions::getInput();
 
@@ -59,11 +60,7 @@ class UserController
         $dataFields = User::describe();
         ApiFunctions::inputChecker($data, $dataFields);
 
-        // check correctness of date
-        ApiFunctions::checkDate($data['birthDate'], '');
-
-        // validate Email
-        $this->validateEmail($data['email']);
+        $this->checkUserData($data);
 
         $checkEmail = User::checkEmail($data['email']);
 
@@ -73,16 +70,12 @@ class UserController
 
         User::createUser($data);
 
-        //var_dump($data); exit;
         Response::json(['message'=>'User creation success'], 201, '');
     }
 
     // PUT -> Update user data
     public function updateUser($params)
     {
-        if (!$params) {
-            Response::json([], 400, 'There aren\'t params');
-        }
         $id = $params['id'];
 
         $checkUser = User::getUser($id);
@@ -91,7 +84,26 @@ class UserController
             Response::json([], 404, 'User not found');
         }
 
-        Response::json(['message'=>$id], 200, '');
+        // get input data
+        $data = (array) ApiFunctions::getInput();
+
+        // Checks whether the inserted fields match
+        // SOME fields in the database table
+
+        $dataFields = User::describe();
+        ApiFunctions::updateChecker($data, $dataFields);
+
+        $this->checkUserData($data);
+
+        $update = User::updateUser($data, ['id'=>$id]);
+
+        if ($update->rowCount() === 0) {
+
+            Response::json([], 200, 'Update unsuccess');
+        }
+
+        Response::json(['message'=>'Update Success'], 200, '');
+
     }
 
     // DELETE -> delete user
@@ -102,10 +114,28 @@ class UserController
         Response::json(['message'=>$id], 200, '');
     }
 
+    /*-----------------------------------------------PRIVATE-FUNCTION*/
+
     private function validateEmail($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             Response::json([], 200, 'Email not valid');
         }
+    }
+
+    private function checkUserData($data)
+    {
+
+        // check correctness of date
+        if (isset($data['birthDate'])) {
+            ApiFunctions::checkDate($data['birthDate'], '');
+        }
+
+        // validate Email
+        if (isset($data['email'])) {
+            $this->validateEmail($data['email']);
+        }
+
+        return true;
     }
 }
