@@ -1,10 +1,14 @@
 import './App.scss';
 
-const baseUrl = process.env.REACT_APP_SERVER;
+// Import Components
+
+import Users from './components/Users/Users';
 
 function App() {
+
   return (
     <>
+      <Users/>
     </>
   );
 }

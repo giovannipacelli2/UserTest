@@ -1,0 +1,41 @@
+.container {
+
+    margin: 2em auto;
+    padding: 2em 1em;
+    border: 1px solid black;
+    border-radius: 20px;
+
+    width: 90%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .users-container {
+        width: fit-content;
+        height: fit-content;
+
+        &>* {
+            margin-bottom: 0.8em;
+        }
+
+        &>*:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+}
+
+@media only screen and (min-width : 512px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width : 700px) {
+    .container {
+        width: 35em;
+    }
+}
