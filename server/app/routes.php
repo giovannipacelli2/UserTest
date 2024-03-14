@@ -2,11 +2,12 @@
 
 /*---------------------------USER---------------------------*/
 
-$router->get('gplans/user/{id}', 'UserController@getUserData');
+$router->get('user/{id}', 'UserController@getUserData');
+$router->get('users', 'UserController@getUserData');
 
 // ACTIONS
 
-$router->post('gplans/user', 'UserController@signup');
+$router->post('user', 'UserController@insertUser');
 
 
-$router->delete('gplans/user', 'UserController@deleteUser,id');
+$router->delete('user', 'UserController@deleteUser,id');

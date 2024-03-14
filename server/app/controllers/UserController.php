@@ -14,5 +14,11 @@ class UserController
         
     }
 
+    // POST -> Insert user data
+    public function insertUser()
+    {
+        Response::json(['message'=>'Ciao'], 200, '');
+    }
+
 
 }
