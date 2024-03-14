@@ -111,7 +111,20 @@ class UserController
     {
         $id = $params['id'];
 
-        Response::json(['message'=>$id], 200, '');
+        $user = User::getUser($id);
+
+        if ($user->rowCount() === 0) {
+            Response::json([], 404, 'User not found');
+        }
+
+        $delete = User::deleteUser($id);
+
+        if(!$delete) {
+
+            Response::json([], 400, 'Delete Unsuccess');
+        }
+
+        Response::json(['message'=>'Delete success'], 200, '');
     }
 
     /*-----------------------------------------------PRIVATE-FUNCTION*/
