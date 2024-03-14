@@ -77,6 +77,31 @@ class UserController
         Response::json(['message'=>'User creation success'], 201, '');
     }
 
+    // PUT -> Update user data
+    public function updateUser($params)
+    {
+        if (!$params) {
+            Response::json([], 400, 'There aren\'t params');
+        }
+        $id = $params['id'];
+
+        $checkUser = User::getUser($id);
+
+        if ($checkUser->rowCount() === 0) {
+            Response::json([], 404, 'User not found');
+        }
+
+        Response::json(['message'=>$id], 200, '');
+    }
+
+    // DELETE -> delete user
+    public function deleteUser($params)
+    {
+        $id = $params['id'];
+
+        Response::json(['message'=>$id], 200, '');
+    }
+
     private function validateEmail($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

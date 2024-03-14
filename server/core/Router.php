@@ -110,10 +110,14 @@ class Router
 
             $params = ApiFunctions::paramsUri($params);
 
+            if (!$params) {
+                Response::json([], 400, 'Error in params');
+            }
+
             if ($id !== '') {
                 $params['id'] = $id;
             }
-
+            
             return call_user_func_array([$controller, $action], [$params]);
 
         } elseif ($id !== '') {
