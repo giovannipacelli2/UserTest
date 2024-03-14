@@ -119,7 +119,7 @@ class UserController
 
         $delete = User::deleteUser($id);
 
-        if(!$delete) {
+        if (!$delete) {
 
             Response::json([], 400, 'Delete Unsuccess');
         }
