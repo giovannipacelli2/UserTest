@@ -66,12 +66,16 @@ class QueryBuilder
 
     /*-----------------------------------------------------GET-METHODS-----------------------------------------------------*/
 
-    public function selectAll($table_name)
+    public function selectAll($table_name, $limit = 100)
     {
         try {
 
-            $q = 'SELECT * FROM ' . $table_name . ';';
+            $q = 'SELECT * FROM ' . $table_name . ' ' .
+            'LIMIT :limit;';
+
             $stmt = $this->pdo->prepare($q);
+
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
 
             $stmt->execute();
 

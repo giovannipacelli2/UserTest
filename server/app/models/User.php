@@ -15,11 +15,21 @@ class User
         return App::get('database')->describe(static::$table);
     }
 
+    public static function checkEmail($email)
+    {
+        return App::get('database')->checkField(static::$table, 'email', $email);
+    }
+
     // GET METHODS
 
     public static function getUser($id)
     {
         return App::get('database')->selectAllByField(static::$table, 'id', $id);
+    }
+
+    public static function getAllUsers($limit)
+    {
+        return App::get('database')->selectAll(static::$table, $limit);
     }
 
     // POST METHODS
