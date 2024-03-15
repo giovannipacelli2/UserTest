@@ -1,8 +1,19 @@
 .user-container {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-items: center;
+    align-content: center;
 
     gap: 0.5em;
+    //border: 1px solid black;
+
+    &>* {
+        //border: 1px solid black;
+        padding: 0.5em;
+    }
 }
