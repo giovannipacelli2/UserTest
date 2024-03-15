@@ -1,24 +1,15 @@
-.container {
+$b-radius: 1em;
+
+.container-master {
 
     margin: 2em auto;
-    padding: 2em 1em;
-    border: 1px solid black;
-    border-radius: 20px;
+    width: 60em;
 
-    width: 90%;
-    height: fit-content;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    overflow-x: scroll;
-
-    .users-container {
-        width: fit-content;
-        height: fit-content;
+    .user-table {
+        width: 100%;
     }
+
+    // CREATE NEW USER FORM
 
     .new-user-container {
         margin: 2em auto;
@@ -63,38 +54,30 @@
 
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0;
+
+    &:last-of-type {
+        border-bottom-left-radius: $b-radius;
+        border-bottom-right-radius: $b-radius;
+    }
+
+}
+
+.row .elem{
+    text-align: center;
+    width: 25%;
+}
+
 .head {
     .elem {
         font-weight: 700;
     }
-    padding: 1em 0;
     background-color: #E0E0E0;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
-}
-
-@media only screen and (min-width : 512px) {
-    .container {
-        
-
-        .new-user-container {
-    
-            .new-user-form {
-    
-                input {
-                    width: 20em;
-                }
-
-                .btn-container {
-                    justify-content: flex-start;
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (min-width : 700px) {
-    .container {
-        width: 60em;
-    }
+    border-top-left-radius: $b-radius;
+    border-top-right-radius: $b-radius;
 }

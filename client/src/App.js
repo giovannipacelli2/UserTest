@@ -2,7 +2,7 @@ import './App.scss';
 
 // Import Components
 
-import Users from './components/Users/Users';
+import UserList from './components/UserList/UserList';
 import ModalMessaege from './components/ModalMessage/ModalMessage';
 
 import { useGlobalContext } from './context.js';
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       {isOpenModal && <ModalMessaege title={modalMsg} action={()=>{setIsOpenModal(false)}} />}
-      <Users/>
+      <UserList/>
     </>
   );
 }

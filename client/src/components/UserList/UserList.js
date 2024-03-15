@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Users.scss';
+import './UserList.scss';
 
 import { useGlobalContext } from '../../context';
 
@@ -8,7 +8,7 @@ import { useGlobalContext } from '../../context';
 import User from '../User/User';
 import UserForm from '../UserForm/UserForm';
 
-const Users = () => {
+const UserList = () => {
 
     const { users, fetchUsers, createUser } = useGlobalContext();
 
@@ -28,9 +28,9 @@ const Users = () => {
 	};
 
     return (
-        <div className="container">
-            <div className='users-container'>
-                <div className="user-container head">
+        <div className="container-master">
+            <div className='user-table'>
+                <div className="row head">
                     <div className="elem">Nome</div>
                     <div className="elem">Cognome</div>
                     <div className="elem">Email</div>
@@ -38,13 +38,13 @@ const Users = () => {
                 </div>
                 {
                     users.map((user, index)=>{
-                        let color = '';
+                        let css = '';
                         if (index % 2 == 0) {
-                            color = '#FBFBFB';
+                            css = 'table-light';
                         } else {
-                            color = '#E0E0E0';
+                            css = 'table-dark';
                         }
-                        return <User data={user} key={index} color={color}/>
+                        return <User data={user} key={index} cssClass={css}/>
                     })
                 }
             </div>
@@ -58,4 +58,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default UserList

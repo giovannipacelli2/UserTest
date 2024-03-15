@@ -5,18 +5,13 @@ import UserForm from '../UserForm/UserForm';
 
 import { useGlobalContext } from '../../context';
 
-const User = ({ data, color }) => {
+const User = ({ data, cssClass }) => {
 
 	const { deleteUser, editUser, fetchUsers } = useGlobalContext();
 
 	const { id, name, surname, email, birthDate } = data;
 
 	const [isEdit, setIsEdit] = useState(false);
-
-	let style = {
-		backgroundColor: color
-	};
-
 
 	const handleEdit = async (data) => {
 
@@ -38,17 +33,18 @@ const User = ({ data, color }) => {
 	if (!isEdit) {
 
 		return (
-			<div className="row" style={style}>
+			<div className={`row user-row ${cssClass}`}>
 				<div className='user-container'>
 					<div className="elem">{name}</div>
 					<div className="elem">{surname}</div>
 					<div className="elem">{email}</div>
 					<div className="elem">{birthDate}</div>
+				</div>
 				<div className="btn-container">
 					<button type="button" className='btn' onClick={() => { setIsEdit(true) }}>Edit</button>
 					<button type="button" className='btn' onClick={() => { deleteUser(id) }}>Delete</button>
 				</div>
-				</div>
+
 			</div>
 
 		)
@@ -59,7 +55,7 @@ const User = ({ data, color }) => {
 				<UserForm 
 					action={handleEdit} 
 					initialData={{ name, surname, email, birthDate }}
-					cssClass='user-edit'	
+					cssClass={`row user-edit ${cssClass}`}	
 				/>
 				<button type="button" onClick={handleUndo}>Undo</button>
 			</>
@@ -76,7 +72,7 @@ User.defaultProps = {
 		email: 'email',
 		birthDate: 'data',
 	}, 
-	color : 'transparent'
+	cssClass : ''
 }
 
 export default User
