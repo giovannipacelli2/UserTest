@@ -19,6 +19,16 @@
     }
 }
 
+.de-btn {
+    display: block;
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+/*----------------------COLORS----------------------*/
+
 .table-light {
     background-color: #FBFBFB;
 }
@@ -26,4 +36,16 @@
 .table-dark {
     
     background-color: #E0E0E0;
+}
+
+.cl-primary{
+    color : #3B71CA;
+}
+
+.cl-danger {
+    color : #DC4C64;
+}
+
+.cl-success{
+    color : #14A44D;
 }

@@ -3,7 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding: 2em 0;
+
     gap: 0.8em;
+
+/*---------------------------NORMAL-MODE---------------------------*/
 
     .user-container {
         display: flex;
@@ -21,14 +26,66 @@
         justify-content: center;
         align-items: center;
 
-        gap: 0.5em;
+        gap: 3em;
 
         align-self: flex-end;
+        
+        .icon-btn {
+            .icon {
+                font-size: 1.2em;
+            }
+        }
     }
 }
 
-.user-edit {
+/*----------------------------EDIT-MODE----------------------------*/
 
+.edit-mode {
+    position: relative;
+    padding-top: 3em;
+    padding-bottom: 1.5em;
+}
+
+.abs-btn {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+
+    cursor: pointer;
+
+    .icon {
+        font-size: 1.2em;
+    }
+
+}
+
+.user-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+
+    width: 100%;
+
+    .input-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+
+        width: 100%;
+
+        input {
+            width: 25%;
+            margin: 0 0.5em;
+            font-size: 1.1em;
+        }
+    }
+
+    .btn-container {
+        // inherit
+    }
 
     label {
         display: none !important;

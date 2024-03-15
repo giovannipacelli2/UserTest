@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import { FaRegSave } from "react-icons/fa";
+
 const UserForm = ({action, initialData, cssClass}) => {
 
 	const defaultData = {
@@ -38,40 +40,44 @@ const UserForm = ({action, initialData, cssClass}) => {
 		
 		  return (
 			<form onSubmit={handleSubmit} className={cssClass}>
-				<label htmlFor="name">Nome</label>
-				<input
-					type='text'
-					id='name'
-					name='name'
-					value={data.name}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<label htmlFor="surname">Cognome</label>
-				<input
-					type='text'
-					id='surname'
-					name='surname'
-					value={data.surname}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<label htmlFor="email">E-mail</label>
-				<input
-					type='email'
-					id='email'
-					name='email'
-					value={data.email}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<label htmlFor="birthDate">Data di nascita</label>
-				<input
-					type='date'
-					id='birthDate'
-					name='birthDate'
-					value={data.birthDate}
-					onChange={(e)=>{handleChange(e)}}
-				/>
+				<div className="input-container">
+					<label htmlFor="name">Nome</label>
+					<input
+						type='text'
+						id='name'
+						name='name'
+						value={data.name}
+						onChange={(e)=>{handleChange(e)}}
+					/>
+					<label htmlFor="surname">Cognome</label>
+					<input
+						type='text'
+						id='surname'
+						name='surname'
+						value={data.surname}
+						onChange={(e)=>{handleChange(e)}}
+					/>
+					<label htmlFor="email">E-mail</label>
+					<input
+						type='email'
+						id='email'
+						name='email'
+						value={data.email}
+						onChange={(e)=>{handleChange(e)}}
+					/>
+					<label htmlFor="birthDate">Data di nascita</label>
+					<input
+						type='date'
+						id='birthDate'
+						name='birthDate'
+						value={data.birthDate}
+						onChange={(e)=>{handleChange(e)}}
+					/>
+				</div>
 				<div className="btn-container">
-					<button type="submit" className='btn'>Save</button>
+					<button type="submit" className='de-btn'>
+						<FaRegSave className='icon cl-success'/>
+					</button>
 				</div>
 			</form>
   )
