@@ -3,7 +3,7 @@ $b-radius: 1em;
 .container-master {
 
     margin: 2em auto;
-    width: 60em;
+    width: 40em;
 
     .user-table {
         width: 100%;
@@ -13,7 +13,7 @@ $b-radius: 1em;
 
     .new-user-container {
         margin: 2em auto;
-        width: 90%;
+        width: 90vw;
 
         .new-user-form{
 
@@ -95,5 +95,20 @@ $b-radius: 1em;
 
     .icon {
         font-size: 1.8em;
+    }
+}
+
+@media only screen and (min-width:670px) {
+    .container-master {
+        width: 98%;
+
+        .new-user-container {    
+            width: 90%;
+        }
+    }
+}
+@media only screen and (min-width:1000px) {
+    .container-master {
+        width: 60em;
     }
 }
