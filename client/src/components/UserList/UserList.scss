@@ -7,6 +7,10 @@ $b-radius: 1em;
 
     .user-table {
         width: 100%;
+        border: 1px solid #E0E0E0;
+        border-radius: $b-radius;
+
+        box-shadow: 0px 4px 16px #E0E0E0;
     }
 
     // CREATE NEW USER FORM
