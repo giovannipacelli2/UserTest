@@ -10,6 +10,10 @@ export const AppProvider = ({ children }) => {
 
     const [users, setUsers] = useState([]);
 
+    // Manage modal for message
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [modalMsg, setModalMsg] = useState('prova');
+
     const fetchUsers = () => {
 
         fetchData('GET', baseUrl + 'users', {}).then((res) => {
@@ -33,7 +37,9 @@ export const AppProvider = ({ children }) => {
             const { data, message } = res;
 
             if (!data && message) {
-                console.log(message);
+                setIsOpenModal(true);
+                setModalMsg('Errore nell\'eliminazione');
+
                 return false;
                 
             } else {
@@ -50,7 +56,28 @@ export const AppProvider = ({ children }) => {
             const { data, message } = res;
 
             if (!data && message) {
-                console.log(message);
+                setIsOpenModal(true);
+                setModalMsg('Errore nella modifica');
+
+                return false;
+            } else {
+                fetchUsers();
+            }
+        });
+
+        return true;
+	};
+
+    const createUser = async (data)=>{
+
+        await fetchData('POST', baseUrl + 'user', data).then((res) => {
+
+            const { data, message } = res;
+
+            if (!data && message) {
+                setIsOpenModal(true);
+                setModalMsg('Errore creazione nuovo utente');
+
                 return false;
             } else {
                 fetchUsers();
@@ -61,7 +88,8 @@ export const AppProvider = ({ children }) => {
 	};
 
     return <AppContext.Provider value={
-        { users, fetchUsers, editUser, deleteUser }
+        { users, fetchUsers, createUser, editUser, deleteUser,
+            modalMsg, setModalMsg, isOpenModal, setIsOpenModal }
     }>
         {children}
     </AppContext.Provider>

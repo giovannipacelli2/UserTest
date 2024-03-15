@@ -1,0 +1,20 @@
+.btn {
+    border-radius: 10px;
+    border: 1px solid #353535;
+
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 0.3em 1.4em;
+
+    color: #353535;
+    background: #FFF;
+
+    transition: 100ms all;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+
+        outline: 2px solid #353535;
+    }
+}

@@ -1,0 +1,38 @@
+$back-color : rgba(0, 0, 0, 0.588);
+$modal-color : #d9d9d9c7;
+$radius: 1em;
+
+.modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background-color: $back-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 1.2em 0.2em;
+
+        width: 20em;
+        height: 10em;
+
+        background-color: $modal-color;
+        border-radius: $radius;   
+        
+        h2 {
+            text-align: center;
+        }
+		
+    } 
+}

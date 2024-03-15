@@ -42,7 +42,7 @@ const User = ({data}) => {
 		if (!res) {
 			console.log('error in edit');
 		} else {
-			let users = await fetchUsers();
+			await fetchUsers();
 		}
 		
 		setIsEdit(false);
