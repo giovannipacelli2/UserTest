@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './User.scss';
 
 import UserForm from '../UserForm/UserForm';
+import ModalConfirm from '../ModalConfirm/ModalConfirm';
+
+// Import ICONS
 import { IoIosArrowBack } from "react-icons/io";
 import { ImBin } from "react-icons/im";
 import { GrEdit } from "react-icons/gr";
@@ -15,6 +18,7 @@ const User = ({ data, cssClass }) => {
 	const { id, name, surname, email, birthDate } = data;
 
 	const [isEdit, setIsEdit] = useState(false);
+	const [deleteModal, setDeleteModal] = useState(false);
 
 	const handleEdit = async (data) => {
 
@@ -29,6 +33,10 @@ const User = ({ data, cssClass }) => {
 		setIsEdit(false);
 	};
 
+	const handleDelete = (id)=>{
+		deleteUser(id);
+	};
+
 	const handleUndo = () => {
 		setIsEdit(false);
 	};
@@ -36,25 +44,35 @@ const User = ({ data, cssClass }) => {
 	if (!isEdit) {
 
 		return (
-			<div className={`row user-row ${cssClass}`}>
-				<div className='user-container'>
-					<div className="elem">{name}</div>
-					<div className="elem">{surname}</div>
-					<div className="elem">{email}</div>
-					<div className="elem">{birthDate}</div>
-				</div>
-	
-				<div className="btn-container">
-					<div className='icon-btn' onClick={() => { setIsEdit(true) }}>
-						<GrEdit className='icon cl-primary'/>
+			<>
+				{
+					deleteModal && 
+					<ModalConfirm 
+						title={"Vuoi eliminare l\'utente " + name + " ?"}
+						confirm={() => { deleteUser(id) }}
+						refuse={()=> { setDeleteModal(false) }}
+					/>
+				}
+				<div className={`row user-row ${cssClass}`}>
+					<div className='user-container'>
+						<div className="elem">{name}</div>
+						<div className="elem">{surname}</div>
+						<div className="elem">{email}</div>
+						<div className="elem">{birthDate}</div>
 					</div>
-					<div className='icon-btn' onClick={() => { deleteUser(id) }}>
+		
+					<div className="btn-container">
+						<div className='icon-btn' onClick={() => { setIsEdit(true) }}>
+							<GrEdit className='icon cl-primary'/>
+						</div>
+						<div className='icon-btn' onClick={()=> { setDeleteModal(true) }}>
 
-						<ImBin className='icon cl-danger'/>
+							<ImBin className='icon cl-danger'/>
+						</div>
 					</div>
-				</div>
 
-			</div>
+				</div>
+			</>
 
 		)
 	} else {
