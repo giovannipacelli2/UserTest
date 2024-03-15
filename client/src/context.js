@@ -25,9 +25,43 @@ export const AppProvider = ({ children }) => {
             }
         });
     };
+	
+	const deleteUser = async (id)=>{
+
+        await fetchData('DELETE', baseUrl + 'user?id=' + id, {}).then((res) => {
+
+            const { data, message } = res;
+
+            if (!data && message) {
+                console.log(message);
+                return false;
+                
+            } else {
+                fetchUsers();
+            }
+        });
+        return true;
+	};
+	
+	const editUser = async (data, id)=>{
+
+        await fetchData('PUT', baseUrl + 'user?id=' + id, data).then((res) => {
+
+            const { data, message } = res;
+
+            if (!data && message) {
+                console.log(message);
+                return false;
+            } else {
+                fetchUsers();
+            }
+        });
+
+        return true;
+	};
 
     return <AppContext.Provider value={
-        { users, fetchUsers }
+        { users, fetchUsers, editUser, deleteUser }
     }>
         {children}
     </AppContext.Provider>
