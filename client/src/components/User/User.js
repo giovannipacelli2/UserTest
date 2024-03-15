@@ -33,13 +33,22 @@ const User = ({ data, cssClass }) => {
 		setIsEdit(false);
 	};
 
-	const handleDelete = (id)=>{
-		deleteUser(id);
-	};
-
 	const handleUndo = () => {
 		setIsEdit(false);
 	};
+
+	const converDate = (date) => {
+		let d = new Date(date);
+
+		let day = d.getDate();
+		let month = d.getMonth() + 1;
+		let year = d.getFullYear();
+
+		day = day < 10 ? '0' + day : day;
+		month = month < 10 ? '0' + month : month;
+
+		return day + '/' +  month + '/' + year; 
+	}
 
 	if (!isEdit) {
 
@@ -58,7 +67,7 @@ const User = ({ data, cssClass }) => {
 						<div className="elem">{name}</div>
 						<div className="elem">{surname}</div>
 						<div className="elem">{email}</div>
-						<div className="elem">{birthDate}</div>
+						<div className="elem">{converDate(birthDate)}</div>
 					</div>
 		
 					<div className="btn-container">
