@@ -1,13 +1,8 @@
 import React, {useState} from 'react';
-import './UserForm.scss';
 
-import { useGlobalContext } from '../../context';
+const UserForm = ({action, initialData, cssClass}) => {
 
-const UserForm = () => {
-	
-	const { createUser, fetchUsers } = useGlobalContext();
-
-	const initialData = {
+	const defaultData = {
 		name : '',
 		surname : '',
 		email : '',
@@ -15,7 +10,6 @@ const UserForm = () => {
 	};
 
 	const [ data, setData ] = useState(initialData);
-	
 	
 	const handleChange = (e) => {
 		
@@ -36,20 +30,15 @@ const UserForm = () => {
 
 		e.preventDefault();
 		
-		let res = await createUser(data);
-
-		if (!res) {
-			console.log('error sending data');
-		} else {
-			await fetchUsers();
-		}
+		action(data);
 		
-		setData(initialData);
+		setData(defaultData);
 	};
 
 		
 		  return (
-			<form onSubmit={handleSubmit} className='user-form'>
+			<form onSubmit={handleSubmit} className={cssClass}>
+				<label htmlFor="name">Nome</label>
 				<input
 					type='text'
 					id='name'
@@ -57,6 +46,7 @@ const UserForm = () => {
 					value={data.name}
 					onChange={(e)=>{handleChange(e)}}
 				/>
+				<label htmlFor="surname">Cognome</label>
 				<input
 					type='text'
 					id='surname'
@@ -64,6 +54,7 @@ const UserForm = () => {
 					value={data.surname}
 					onChange={(e)=>{handleChange(e)}}
 				/>
+				<label htmlFor="email">E-mail</label>
 				<input
 					type='email'
 					id='email'
@@ -71,6 +62,7 @@ const UserForm = () => {
 					value={data.email}
 					onChange={(e)=>{handleChange(e)}}
 				/>
+				<label htmlFor="birthDate">Data di nascita</label>
 				<input
 					type='date'
 					id='birthDate'
@@ -79,12 +71,22 @@ const UserForm = () => {
 					onChange={(e)=>{handleChange(e)}}
 				/>
 				<div className="btn-container">
-					<button type="submit">Save</button>
+					<button type="submit" className='btn'>Save</button>
 				</div>
 			</form>
   )
 
 
 }
+
+UserForm.defaultProps = {
+	initialData : {
+		name : '',
+		surname : '',
+		email : '',
+		birthDate : ''
+	}, 
+	cssClass : ''
+};
 
 export default UserForm

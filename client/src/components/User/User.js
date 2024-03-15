@@ -1,117 +1,82 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './User.scss';
+
+import UserForm from '../UserForm/UserForm';
 
 import { useGlobalContext } from '../../context';
 
-const User = ({data}) => {
-	
-	const { users, deleteUser, editUser, fetchUsers } = useGlobalContext();
+const User = ({ data, color }) => {
 
-    const { id, name, surname, email, birthDate } = data;
-	
-	const [ isEdit, setIsEdit ] = useState(false);
-	const [ editData, setEditData ] = useState({});
-	
-	useEffect(()=>{
-		setEditData({
-			name, surname, email, birthDate
-		});
-	}, [users]);
-	
-	const handleChange = (e) => {
-		
-		if (!e.target) return;
-		
-		let name = e.target.name;
-		let value = e.target.value;
-		
-		setEditData((prevState)=>{
-			return {
-				...prevState,
-				[name] : value
-			};
-		});
+	const { deleteUser, editUser, fetchUsers } = useGlobalContext();
+
+	const { id, name, surname, email, birthDate } = data;
+
+	const [isEdit, setIsEdit] = useState(false);
+
+	let style = {
+		backgroundColor: color
 	};
-	
-	const handleSubmit = async (e) => {
 
-		e.preventDefault();
-		
-		let res = await editUser(editData, id);
-		console.log(res);
+
+	const handleEdit = async (data) => {
+
+		let res = await editUser(data, id);
+
 		if (!res) {
 			console.log('error in edit');
 		} else {
 			await fetchUsers();
 		}
-		
+
 		setIsEdit(false);
-		setEditData({})
 	};
-	
+
+	const handleUndo = () => {
+		setIsEdit(false);
+	};
+
 	if (!isEdit) {
-		
-		  return (
-			<div className='user-container'>
-				<div className="elem">{name}</div>
-				<div className="elem">{surname}</div>
-				<div className="elem">{email}</div>
-				<div className="elem">{birthDate}</div>
+
+		return (
+			<div className="row" style={style}>
+				<div className='user-container'>
+					<div className="elem">{name}</div>
+					<div className="elem">{surname}</div>
+					<div className="elem">{email}</div>
+					<div className="elem">{birthDate}</div>
 				<div className="btn-container">
-					<button type="button" onClick={()=>{setIsEdit(true)}}>Edit</button>
-					<button type="button" onClick={()=>{deleteUser(id)}}>Delete</button>
+					<button type="button" className='btn' onClick={() => { setIsEdit(true) }}>Edit</button>
+					<button type="button" className='btn' onClick={() => { deleteUser(id) }}>Delete</button>
+				</div>
 				</div>
 			</div>
-		  )
+
+		)
 	} else {
-		
-		  return (
-			<form onSubmit={handleSubmit} className='user-form'>
-				<input
-					type='text'
-					id='name'
-					name='name'
-					value={editData.name}
-					onChange={(e)=>{handleChange(e)}}
+
+		return (
+			<>
+				<UserForm 
+					action={handleEdit} 
+					initialData={{ name, surname, email, birthDate }}
+					cssClass='user-edit'	
 				/>
-				<input
-					type='text'
-					id='surname'
-					name='surname'
-					value={editData.surname}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<input
-					type='email'
-					id='email'
-					name='email'
-					value={editData.email}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<input
-					type='date'
-					id='birthDate'
-					name='birthDate'
-					value={editData.birthDate}
-					onChange={(e)=>{handleChange(e)}}
-				/>
-				<div className="btn-container">
-					<button type="submit">Save</button>
-				</div>
-			</form>
-  )
+				<button type="button" onClick={handleUndo}>Undo</button>
+			</>
+		)
 	}
 
 
 }
 
 User.defaultProps = {
-    data : {
-        name: 'nome',
-        surname: 'cognome',
-        email: 'email',
-        birthDate: 'data',
-    }
+	data: {
+		name: 'nome',
+		surname: 'cognome',
+		email: 'email',
+		birthDate: 'data',
+	}, 
+	color : 'transparent'
 }
 
 export default User
