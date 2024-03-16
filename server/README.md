@@ -62,22 +62,9 @@
 
 ## Richieste “POST” inserimento dati:
 
-### Inserimento di un nuovo prodotto:
-
-		POST -> {domain}/api/products
-        
-### Corpo della richiesta: 
-    {
-        "product_code": "4000",
-        "name": "meat",
-        "saved_kg_co2":"6"
-    }
-
-</br>
-
 ### Inserimento di un nuovo utente:
 	
-    	POST -> {domain}/user
+    POST -> {domain}/user
 
 ### Corpo della richiesta: 
 
