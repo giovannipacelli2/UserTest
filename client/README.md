@@ -8,7 +8,7 @@ Trattandosi di un'app di piccole dimensioni, ho preferito evitare l'utilizzo di 
 
 * il file `index.js` ovvero **l'entry** point dell'app, essa importa un file `index.css` dove sono presenti una serie di variabili globali e renderizza il componente `App` avvolta dal componente `<AppProvider>` che si occupa di gestire stati e funzioni condivise.
 
-* `App.js` contiene l'intera struttura dell'app, esso importa il proprio file `App.css` che contiene classi generiche.
+* `App.js` contiene l'intera struttura dell'app, esso importa il proprio file `App.scss` che contiene classi generiche.
 
 * `context.js` contiene le 4 operazioni fondamentali per effettuare operazioni sugli utenti lato server e la gestione di un `modal` che all'occorrenza mostra dei messaggi.
 
