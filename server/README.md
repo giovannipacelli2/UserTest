@@ -71,7 +71,7 @@
     {
         "name": "Giacomo",
         "surname": "Russo",
-        "email": "russog@gmail.com",
+        "email": "russog@gml.com",
         "birthDate": "1982-01-26"
     }
 
@@ -93,7 +93,7 @@
     {
         "name": "Giacomo",
         "surname": "Russo",
-        "email": "russog@gmail.com",
+        "email": "russog@gml.com",
         "birthDate": "1982-01-26"
     }
 
